@@ -100,21 +100,11 @@ export default function HeroCarousel() {
 
 // Blinds Effect Component
 function BlindsEffect({ src }: { src: string }) {
-  const divRef = useRef(null);
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    if (divRef.current) {
-      setHeight(divRef.current.getBoundingClientRect().height);
-    }
-
-    const handleResize = () => {
-      if (divRef.current) {
-        setHeight(divRef.current.getBoundingClientRect().height);
-      }
-    };
-  }, []);
+  if (typeof window === "undefined") {
+    return null;
+  }
   return (
-    <div className="relative w-full h-full flex" ref={divRef}>
+    <div className="relative w-full h-full flex">
       {Array.from({ length: NUM_BARS }).map((_, i) => {
         return (
           <motion.div
@@ -128,9 +118,9 @@ function BlindsEffect({ src }: { src: string }) {
               backgroundPosition: `${(i * 100) / (NUM_BARS - 1)}% top`,
               backgroundRepeat: "no-repeat",
             }}
-            initial={{ y: "100%" }} // Starts from below
-            animate={{ y: "0%" }} // Moves into view
-            exit={{ y: "-100%" }} // Moves out of view
+            initial={{ y: "100%" }}
+            animate={{ y: "0%" }}
+            exit={{ y: "-100%" }}
             transition={{ duration: 0.8, delay: i * 0.1, ease: "easeInOut" }} // Staggered effect
           />
         );
