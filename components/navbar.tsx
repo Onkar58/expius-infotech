@@ -14,6 +14,7 @@ import {
   Phone,
 } from "lucide-react";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const navItems = [
   {
@@ -56,12 +57,6 @@ const navItems = [
       { title: "Join Our Team", path: "/careers/join-us" },
     ],
   },
-  {
-    title: "Contact Us",
-    path: "/contact",
-    icon: <Phone className="h-4 w-4" />,
-    submenu: [],
-  },
 ];
 
 export default function Navbar() {
@@ -98,7 +93,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex md:gap-6">
+        <nav className="hidden md:flex md:gap-6 items-center">
           {navItems.map((item) => (
             <div key={item.title} className="relative group">
               <Link
@@ -138,6 +133,11 @@ export default function Navbar() {
               )}
             </div>
           ))}
+
+          <Button>
+            <Phone className="mx-2" />
+            Book a Call
+          </Button>
         </nav>
 
         {/* Mobile navigation */}
@@ -147,18 +147,18 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <div key={item.title} className="space-y-2">
                   <button
-                    className={`flex w-full items-center justify-between text-sm font-medium ${
+                    className={`flex w-full items-center justify-between font-medium ${
                       isActive(item.path) ? "text-primary" : "text-foreground"
                     }`}
                     onClick={() => toggleSubmenu(item.title)}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-md">
                       {item.icon}
                       {item.title}
                     </div>
                     {item.submenu.length > 0 && (
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform ${activeSubmenu === item.title ? "rotate-180" : ""}`}
+                        className={`h-6 w-4 transition-transform ${activeSubmenu === item.title ? "rotate-180" : ""}`}
                       />
                     )}
                   </button>
@@ -183,6 +183,11 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+
+              <Button>
+                <Phone className="mx-2" />
+                Book a Call
+              </Button>
             </nav>
           </div>
         )}

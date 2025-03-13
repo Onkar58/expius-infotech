@@ -24,6 +24,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 201 100% 36%;
     --radius: 0.5rem;
+    --orange: 34 100% 50%;
   }
 
   .dark {
@@ -46,6 +47,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 201 100% 36%;
+    --orange: 34 100% 50%;
   }
 }
 
@@ -58,7 +60,24 @@
   }
 }
 
-.hero-gradient {
-  background: linear-gradient(90deg, rgba(0, 112, 173, 0.9) 0%, rgba(0, 173, 181, 0.8) 100%);
+.gradient-background {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 112, 173, 0.9),
+    rgba(0, 173, 181, 0.8)
+  );
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

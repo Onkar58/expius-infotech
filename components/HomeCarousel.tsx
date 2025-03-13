@@ -1,79 +1,140 @@
 "use client";
-import { Navigation } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./ui/carousel";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "./ui";
+import { ChevronLeft, ChevronRight, Navigation } from "lucide-react";
 
-const images = [
-  "https://expiusinfotech.com/images/sliders/revolution/slider-bg1.jpg",
-  "https://expiusinfotech.com/images/sliders/revolution/slider-bg2.jpg",
-  "https://expiusinfotech.com/images/sliders/revolution/slider-bg6.jpg",
-  "https://expiusinfotech.com/images/sliders/revolution/slider-bg3.jpg",
+const info = [
+  {
+    heading: "PERMANENT STAFFING",
+    sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
+    link: "/",
+    image:
+      "https://covenantindia.net/wp-content/uploads/2024/09/permanent-staffing-company-in-india.webp",
+  },
+
+  {
+    heading: "PERMANENT STAFFING",
+    sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
+    link: "/",
+    image:
+      "https://www.betterplace.co.in/blog/wp-content/uploads/2021/03/60.jpg",
+  },
+  {
+    heading: "PERMANENT STAFFING",
+    sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
+    link: "/",
+    image:
+      "https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-why-hire-rpo.png",
+  },
+  {
+    heading: "PERMANENT STAFFING",
+    sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
+    link: "/",
+    image:
+      "https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-definition.png",
+  },
 ];
 
-const transitions = [
-  { x: "100%", opacity: 0 }, // Slide in from right
-  { x: "-100%", opacity: 0 }, // Slide in from left
-  { scale: 0.8, opacity: 0 }, // Zoom in
-  { rotate: 90, opacity: 0 }, // Rotate
-  { y: "100%", opacity: 0 }, // Slide in from bottom
-];
+const NUM_BARS = 10; // Number of vertical bars
 
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
-  const [transitionType, setTransitionType] = useState(transitions[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % images.length);
-      setTransitionType(
-        transitions[Math.floor(Math.random() * transitions.length)],
-      );
-    }, 3000);
+      setIndex((prevIndex) => (prevIndex + 1) % info.length);
+    }, 15000);
     return () => clearInterval(interval);
+  }, [index]);
+  const nextSlide = useCallback(() => {
+    setIndex((prevIndex) => (prevIndex + 1) % info.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : info.length - 1));
   }, []);
 
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-    >
-      <CarouselContent>
-        {images.map((src, i) => (
-          <CarouselItem key={i} className="relative">
-            <img
-              src={src}
-              alt={`Slide ${i + 1}`}
-              className="w-full h-[60vh] object-cover"
-            />
-            <div className="absolute top-1/3 -translate-y-1/2 left-5 lg:left-[10%] text-white text-center md:text-left px-4 flex item-start flex-col gap-2 md:gap-4">
-              <h1 className="p-2 bg-black/60 font-bold text-2xl md:text-4xl w-fit rounded-md">
-                PERMANENT STAFFING
-              </h1>
-              <p className="p-2 py-1 bg-black/60 w-fit rounded-md text-sm md:text-base">
-                Expius provides talented, experienced, highly motivated
-                candidates for positions with clients across diverse industries.
-              </p>
-              <Button
-                className="h-12 border border-white bg-black/60 w-fit rounded-md text-white font-light text-sm md:text-lg"
-                variant="link"
-              >
-                <Navigation className="mr-2 md:mr-4" /> LEARN MORE
-              </Button>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <div className="relative w-full h-[250px] md:h-[60vh] overflow-hidden">
+      <Button
+        className="absolute top-1/2 left-0 z-10 p-2  bg-black/20 text-white"
+        variant="ghost"
+        onClick={prevSlide}
+      >
+        <ChevronLeft />
+      </Button>
+      <Button
+        className="absolute top-1/2 right-0 z-10 p-2  bg-black/20 text-white"
+        variant="ghost"
+        onClick={nextSlide}
+      >
+        <ChevronRight />
+      </Button>
+
+      <AnimatePresence mode="wait">
+        <BlindsEffect key={index} src={info[index].image} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute top-1/2 md:top-1/3 -translate-y-1/2 left-5 lg:left-[10%] text-white text-center md:text-left px-4 flex item-start flex-col gap-2 md:gap-4 scale-[0.8] md:scale-[1]"
+        >
+          <h1 className="p-2 bg-black/60 font-bold text-2xl md:text-4xl w-fit rounded-md">
+            {info[index].heading}
+          </h1>
+          <p className="p-2 py-1 bg-black/60 w-fit rounded-md text-sm md:text-base">
+            {info[index].sub}
+          </p>
+          <Button
+            className="h-12 border border-white bg-black/60 w-fit rounded-md text-white font-light text-sm md:text-lg"
+            variant="link"
+          >
+            <Navigation className="mr-2 md:mr-4" /> LEARN MORE
+          </Button>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Blinds Effect Component
+function BlindsEffect({ src }: { src: string }) {
+  const divRef = useRef(null);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    if (divRef.current) {
+      setHeight(divRef.current.getBoundingClientRect().height);
+    }
+
+    const handleResize = () => {
+      if (divRef.current) {
+        setHeight(divRef.current.getBoundingClientRect().height);
+      }
+    };
+  }, []);
+  return (
+    <div className="relative w-full h-full flex" ref={divRef}>
+      {Array.from({ length: NUM_BARS }).map((_, i) => {
+        return (
+          <motion.div
+            key={i}
+            className="absolute h-full"
+            style={{
+              width: `calc(100% / ${NUM_BARS})`,
+              left: `calc(${(i * 100) / NUM_BARS}%)`,
+              backgroundImage: `url(${src})`,
+              backgroundSize: `${window.innerWidth}px auto`,
+              backgroundPosition: `${(i * 100) / (NUM_BARS - 1)}% top`,
+              backgroundRepeat: "no-repeat",
+            }}
+            initial={{ y: "100%" }} // Starts from below
+            animate={{ y: "0%" }} // Moves into view
+            exit={{ y: "-100%" }} // Moves out of view
+            transition={{ duration: 0.8, delay: i * 0.1, ease: "easeInOut" }} // Staggered effect
+          />
+        );
+      })}
+    </div>
   );
 }

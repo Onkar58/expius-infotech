@@ -1,90 +1,57 @@
-import Link from "next/link";
-import Image from "next/image";
+import { AboutUs } from "@/components/AboutUs";
+import { Counter } from "@/components/Counter";
+import { HeroSection } from "@/components/HeroSection";
+import HeroCarousel from "@/components/HomeCarousel";
 import { Button } from "@/components/ui/button";
+import WorkforceManagement from "@/components/WorkForce";
 import {
-  Users,
   Briefcase,
+  Building,
+  CheckCircle,
+  ChevronRight,
+  Code,
   Search,
   UserCheck,
-  Building,
-  Code,
-  ChevronRight,
-  CheckCircle,
+  Users,
 } from "lucide-react";
-import HeroCarousel from "@/components/HomeCarousel";
-import WorkforceManagement from "@/components/WorkForce";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
       <HeroCarousel />
-      <WorkforceManagement />
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 hero-gradient"></div>
-
-        <div className="container relative z-10 py-20 md:py-28 lg:py-36">
-          <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
-            <div className="space-y-6 text-white">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                Connecting the Right People with Right Opportunities
-              </h1>
-              <p className="text-lg md:text-xl">
-                Full-service staffing and talent management solutions to help
-                our clients fulfill their talent hunt.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90"
-                >
-                  <Link href="/services">Our Services</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  <Link href="/contact">Contact Us</Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="hidden md:block">
-              <Image
-                src="https://www.digimoksha.com/assets/people-services.png"
-                alt="Talent Management"
-                width={500}
-                height={500}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Stats Section */}
       <section className="py-12 bg-muted">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-2">
-              <p className="text-4xl font-bold text-primary">80+</p>
+              <p className="text-4xl font-bold text-primary">
+                <Counter number={80} />+
+              </p>
               <p className="text-sm text-muted-foreground">
                 Years of Experience
               </p>
             </div>
             <div className="space-y-2">
-              <p className="text-4xl font-bold text-primary">1000+</p>
+              <p className="text-4xl font-bold text-primary">
+                <Counter number={1000} />+
+              </p>
               <p className="text-sm text-muted-foreground">
                 Successful Placements
               </p>
             </div>
             <div className="space-y-2">
-              <p className="text-4xl font-bold text-primary">200+</p>
+              <p className="text-4xl font-bold text-primary">
+                <Counter number={200} />+
+              </p>
               <p className="text-sm text-muted-foreground">Client Companies</p>
             </div>
             <div className="space-y-2">
-              <p className="text-4xl font-bold text-primary">15+</p>
+              <p className="text-4xl font-bold text-primary">
+                <Counter number={15} />+
+              </p>
               <p className="text-sm text-muted-foreground">
                 Industry Verticals
               </p>
@@ -94,46 +61,9 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="grid gap-12 md:grid-cols-2 items-center">
-            <div>
-              <Image
-                src="https://media.licdn.com/dms/image/v2/D5612AQHIY1yzlo0LDg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711980639162?e=2147483647&v=beta&t=tTli_I8X-xJWzChCWzXVObIG1NS6wiyjS_BbOqh2-3g"
-                alt="About Expius Infotech"
-                width={600}
-                height={600}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-
-            <div className="space-y-6">
-              <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                About Us
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Building Knowledge and Practice Through Technology
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Since inception, Expius Infotech's aim has been towards
-                connecting the right people with the right opportunity. We offer
-                full-service staffing and talent management solutions to help
-                our clients fulfill their talent hunt.
-              </p>
-              <p className="text-lg text-muted-foreground">
-                Our management team has 80+ Man Years of experience in
-                Information Technology; having our DNA into IT staffing and
-                human capital solutions.
-              </p>
-              <Button asChild>
-                <Link href="/about" className="inline-flex items-center">
-                  Learn More <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutUs />
+      <WorkforceManagement />
+      <HeroCarousel />
 
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-muted">
