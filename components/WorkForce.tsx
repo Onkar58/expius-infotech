@@ -13,11 +13,15 @@ type InfoCardProps = {
 const InfoCard: FC<InfoCardProps> = ({ Icon, title, description }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
+      initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
+      whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: false, amount: 0.2 }}
+      whileHover={{
+        scale: 1.08,
+        rotateY: 5,
+        boxShadow: "0px 10px 20px rgba(0,0,0,0.15)",
+      }}
       className="p-6 bg-white rounded-lg shadow-lg text-center"
     >
       <div className="flex justify-center">
@@ -40,10 +44,10 @@ const WorkforceManagement: FC = () => {
     >
       {/* Animated Title */}
       <motion.h2
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, scale: 0.8, rotateX: -10 }}
+        whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
         className="text-3xl font-[400] text-center"
       >
         <span className="font-[500] text-black">EXPIUS INFOTECH</span> -
@@ -52,12 +56,13 @@ const WorkforceManagement: FC = () => {
 
       {/* Animated Paragraphs */}
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
         className="text-gray-700 text-center mt-4"
       >
+        Expius Infotech provides end-to-end HR Solutions to clients globally...
         Expius Infotech provides end-to-end HR Solutions to clients globally. We
         deliver the entire gamut of staffing solutions from permanent hires to
         contract staff, contract to hire, temporary help to project placements,
@@ -79,10 +84,14 @@ const WorkforceManagement: FC = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
         variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+          hidden: { opacity: 0, y: 30 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.2, ease: "easeOut" },
+          },
         }}
         className="mt-12 grid md:grid-cols-3 gap-6"
       >
