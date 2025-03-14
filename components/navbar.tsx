@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -64,6 +64,8 @@ export default function Navbar() {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
 
+  const [currentSubMenu, setCurrentSubMenu] = useState<string>("");
+  const [persist, setPersist] = useState<boolean>(false);
   const toggleSubmenu = (title: string) => {
     setActiveSubmenu(activeSubmenu === title ? null : title);
   };
@@ -71,10 +73,40 @@ export default function Navbar() {
   const isActive = (path: string) => {
     return pathname === path || pathname.startsWith(`${path}/`);
   };
-  useEffect(() => {
-    console.log(isOpen, activeSubmenu);
-  }, [isOpen, activeSubmenu]);
 
+  const showSubMenu = useCallback(
+    (title: string) => {
+      if (persist) {
+        return;
+      }
+      setCurrentSubMenu(title);
+    },
+    [persist],
+  );
+  const toggleSubMenu = useCallback(
+    (title: string) => {
+      console.log(currentSubMenu, title, persist);
+      if (currentSubMenu === title && persist) {
+        setCurrentSubMenu("");
+        setPersist(false);
+      } else {
+        setCurrentSubMenu(title);
+        setPersist(true);
+      }
+    },
+    [currentSubMenu, persist],
+  );
+
+  const hideSubMenu = useCallback(() => {
+    if (persist) {
+      return;
+    }
+    setCurrentSubMenu("");
+  }, [persist]);
+
+  const clearSubMenu = useCallback(() => {
+    setPersist(false);
+  }, []);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -87,38 +119,34 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Mobile menu button */}
         <button className="block md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* Desktop navigation */}
         <nav className="hidden md:flex md:gap-6 items-center">
-          {navItems.map((item) => (
-            <div key={item.title} className="relative group">
-              <Link
-                href={item.path}
-                className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                  isActive(item.path) ? "text-primary" : "text-foreground"
-                }`}
-                onClick={(e) => {
-                  if (item.submenu.length > 0) {
-                    e.preventDefault();
-                    toggleSubmenu(item.title);
-                  }
-                }}
+          {navItems.map(({ title, path, submenu, icon }) => (
+            <div
+              onMouseOver={() => showSubMenu(title)}
+              onMouseOut={hideSubMenu}
+              onBlur={clearSubMenu}
+              onClick={() => toggleSubMenu(title)}
+              className="flex items-center cursor-pointer relative"
+            >
+              <Button
+                variant="ghost"
+                className={`hove:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
               >
-                {item.title}
-                {item.submenu.length > 0 && (
-                  <ChevronDown
-                    className={`h-4 w-4 ${activeSubmenu === item.title ? "rotate-180" : ""}`}
-                  />
-                )}
-              </Link>
+                {title}
+              </Button>
+              {submenu.length > 0 && (
+                <ChevronDown
+                  className={`h-4 w-4 ${currentSubMenu === title ? "rotate-180" : ""}`}
+                />
+              )}
 
-              {item.submenu.length > 0 && (
-                <div className="absolute left-0 top-full z-10 mt-2 hidden w-48 rounded-md border bg-card p-2 shadow-lg group-hover:block">
-                  {item.submenu.map((subItem) => (
+              {currentSubMenu === title && (
+                <div className="absolute left-0 top-full z-10 mt-2  w-48 rounded-md border bg-card p-2 shadow-lg group-hover:block">
+                  {submenu.map((subItem) => (
                     <Link
                       key={subItem.path}
                       href={subItem.path}
@@ -134,13 +162,17 @@ export default function Navbar() {
             </div>
           ))}
 
-          <Button>
-            <Phone className="mx-2" />
-            Book a Call
+          <Button variant="interactive">
+            <Link
+              href="/contact-us"
+              className="relative flex items-center z-10"
+            >
+              <Phone className="mx-2" />
+              Book a Call
+            </Link>
           </Button>
         </nav>
 
-        {/* Mobile navigation */}
         {isOpen && (
           <div className="absolute inset-x-0 top-16 z-50 border-b bg-background p-4 md:hidden">
             <nav className="flex flex-col gap-4">
@@ -184,9 +216,14 @@ export default function Navbar() {
                 </div>
               ))}
 
-              <Button>
-                <Phone className="mx-2" />
-                Book a Call
+              <Button variant="interactive">
+                <Link
+                  href="/contact-us"
+                  className="relative flex items-center z-10"
+                >
+                  <Phone className="mx-2" />
+                  Book a Call
+                </Link>
               </Button>
             </nav>
           </div>
