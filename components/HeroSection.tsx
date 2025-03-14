@@ -23,8 +23,8 @@ export const HeroSection: FC<HeroSectionProps> = () => {
             <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="text-primary underline-none hover:before:bg-orange relative overflow-hidden bg-white px-3 transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0  before:transition-all before:duration-500 hover:text-white hover:before:left-0 hover:before:w-full"
-                variant="link"
+                variant="interactive"
+                className="bg-white text-primary"
               >
                 <Link href="/services" className="relative z-10">
                   Our Services

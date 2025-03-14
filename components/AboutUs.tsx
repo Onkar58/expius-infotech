@@ -67,8 +67,8 @@ export const AboutUs: FC<AboutUsProps> = () => {
               Technology; having our DNA into IT staffing and human capital
               solutions.
             </p>
-            <Button asChild>
-              <Link href="/about" className="inline-flex items-center">
+            <Button size="lg" variant="interactive">
+              <Link href="/about" className="relative flex items-center z-10">
                 Learn More <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
