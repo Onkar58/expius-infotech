@@ -44,7 +44,7 @@ export default function HeroCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % info.length);
-    }, 15000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [index]);
   const nextSlide = useCallback(() => {
@@ -73,10 +73,12 @@ export default function HeroCarousel() {
       </Button>
 
       <AnimatePresence mode="wait">
-        <BlindsEffect key={index} src={info[index].image} />
+        <BlindsEffect key={`blinds-${index}`} src={info[index].image} />
         <motion.div
+          key={`text-${index}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ delay: 2 }}
           className="absolute top-1/2 md:top-1/3 -translate-y-1/2 left-5 lg:left-[10%] text-white text-center md:text-left px-4 flex item-start flex-col gap-2 md:gap-4 scale-[0.8] md:scale-[1]"
         >
