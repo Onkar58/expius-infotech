@@ -1,19 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
-  ChevronDown,
-  Menu,
-  X,
-  Users,
   Briefcase,
   Building2,
+  ChevronDown,
   GraduationCap,
+  Menu,
   Phone,
+  Users,
+  X,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useCallback, useState } from "react";
 import { Button } from "./ui/button";
 
 const navItems = [
@@ -23,8 +23,8 @@ const navItems = [
     icon: <Users className="h-4 w-4" />,
     submenu: [
       { title: "About Us", path: "/about" },
-      { title: "Mission", path: "/about/mission" },
-      { title: "Vision", path: "/about/vision" },
+      { title: "Mission", path: "/about#mission" },
+      { title: "Core Values", path: "/about#core-values" },
     ],
   },
   {
@@ -43,8 +43,11 @@ const navItems = [
     path: "/industry-practice",
     icon: <Building2 className="h-4 w-4" />,
     submenu: [
-      { title: "Industry Verticals", path: "/industry-practice/verticals" },
-      { title: "Technologies", path: "/industry-practice/technologies" },
+      {
+        title: "Industry Verticals",
+        path: "/industry-practice?tab=industries",
+      },
+      { title: "Technologies", path: "/industry-practice?tab=technologies" },
     ],
   },
   {
@@ -104,18 +107,18 @@ export default function Navbar() {
     setCurrentSubMenu("");
   }, [persist]);
 
-  const clearSubMenu = useCallback(() => {
-    setPersist(false);
-  }, []);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link
+          href="/"
+          className="relative flex items-center gap-2 w-[200px] h-full"
+        >
           <Image
             src="https://expiusinfotech.com/img/LOGO.PNG"
             alt="LOGO"
-            width={150}
-            height={100}
+            fill
+            className="static"
           />
         </Link>
 
@@ -126,9 +129,9 @@ export default function Navbar() {
         <nav className="hidden md:flex md:gap-6 items-center">
           {navItems.map(({ title, path, submenu, icon }) => (
             <div
+              key={`nav-item-${title}-${path}`}
               onMouseOver={() => showSubMenu(title)}
               onMouseOut={hideSubMenu}
-              onBlur={clearSubMenu}
               onClick={() => toggleSubMenu(title)}
               className="flex items-center cursor-pointer relative"
             >
