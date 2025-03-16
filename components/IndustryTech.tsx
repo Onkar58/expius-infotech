@@ -40,7 +40,7 @@ export const IndustryTech: FC<IndustryTechProps> = () => {
                 "Banking & Finance",
                 "Healthcare & Pharma",
               ],
-              link: "/industry-practice/verticals",
+              link: "/industry-practice?tab=industries",
             },
             {
               icon: <Code className="h-6 w-6 text-primary" />,
@@ -52,7 +52,7 @@ export const IndustryTech: FC<IndustryTechProps> = () => {
                 "Cloud & DevOps",
                 "Data Science & AI",
               ],
-              link: "/industry-practice/technologies",
+              link: "/industry-practice?tab=technologies",
             },
           ].map((card, index) => (
             <motion.div
