@@ -22,7 +22,6 @@ const navItems = [
     path: "/about",
     icon: <Users className="h-4 w-4" />,
     submenu: [
-      { title: "About Us", path: "/about" },
       { title: "Mission", path: "/about#mission" },
       { title: "Core Values", path: "/about#core-values" },
     ],
@@ -77,20 +76,6 @@ export default function Navbar() {
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
-  const toggleSubMenu = useCallback(
-    (title: string) => {
-      console.log(currentSubMenu, title, persist);
-      if (currentSubMenu === title && persist) {
-        setCurrentSubMenu("");
-        setPersist(false);
-      } else {
-        setCurrentSubMenu(title);
-        setPersist(true);
-      }
-    },
-    [currentSubMenu, persist],
-  );
-
   const [submenuTimeout, setSubmenuTimeout] = useState<NodeJS.Timeout | null>(
     null,
   );
@@ -144,15 +129,13 @@ export default function Navbar() {
               onMouseEnter={() => showSubMenu(title)}
               onMouseLeave={hideSubMenu}
             >
-              <div
-                className="flex items-center cursor-pointer"
-                onClick={() => toggleSubMenu(title)}
-              >
+              <div className="flex items-center cursor-pointer">
                 <Button
+                  asChild
                   variant="ghost"
                   className={`hover:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
                 >
-                  {title}
+                  <Link href={path}>{title}</Link>
                 </Button>
                 {submenu.length > 0 && (
                   <ChevronDown
