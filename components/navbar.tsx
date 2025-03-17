@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "./ui/button";
 
 const navItems = [
@@ -77,15 +77,6 @@ export default function Navbar() {
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
-  const showSubMenu = useCallback(
-    (title: string) => {
-      if (persist) {
-        return;
-      }
-      setCurrentSubMenu(title);
-    },
-    [persist],
-  );
   const toggleSubMenu = useCallback(
     (title: string) => {
       console.log(currentSubMenu, title, persist);
@@ -100,12 +91,31 @@ export default function Navbar() {
     [currentSubMenu, persist],
   );
 
+  const [submenuTimeout, setSubmenuTimeout] = useState<NodeJS.Timeout | null>(
+    null,
+  );
+  const submenuRef = useRef<HTMLDivElement | null>(null);
+
+  const showSubMenu = useCallback(
+    (title: string) => {
+      if (submenuTimeout) {
+        clearTimeout(submenuTimeout);
+      }
+      setCurrentSubMenu(title);
+    },
+    [submenuTimeout],
+  );
+
   const hideSubMenu = useCallback(() => {
-    if (persist) {
-      return;
-    }
-    setCurrentSubMenu("");
-  }, [persist]);
+    const timeout = setTimeout(() => {
+      if (submenuRef.current && submenuRef.current.matches(":hover")) {
+        return; // If still hovered, do nothing
+      }
+      setCurrentSubMenu("");
+    }, 300); // Delay hiding
+
+    setSubmenuTimeout(timeout);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -130,25 +140,37 @@ export default function Navbar() {
           {navItems.map(({ title, path, submenu, icon }) => (
             <div
               key={`nav-item-${title}-${path}`}
-              onMouseOver={() => showSubMenu(title)}
-              onMouseOut={hideSubMenu}
-              onClick={() => toggleSubMenu(title)}
-              className="flex items-center cursor-pointer relative"
+              className="relative"
+              onMouseEnter={() => showSubMenu(title)}
+              onMouseLeave={hideSubMenu}
             >
-              <Button
-                variant="ghost"
-                className={`hove:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
+              <div
+                className="flex items-center cursor-pointer"
+                onClick={() => toggleSubMenu(title)}
               >
-                {title}
-              </Button>
-              {submenu.length > 0 && (
-                <ChevronDown
-                  className={`h-4 w-4 ${currentSubMenu === title ? "rotate-180" : ""}`}
-                />
-              )}
+                <Button
+                  variant="ghost"
+                  className={`hover:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
+                >
+                  {title}
+                </Button>
+                {submenu.length > 0 && (
+                  <ChevronDown
+                    className={`h-4 w-4 ${currentSubMenu === title ? "rotate-180" : ""}`}
+                  />
+                )}
+              </div>
 
+              {/* Submenu */}
               {currentSubMenu === title && (
-                <div className="absolute left-0 top-full z-10 mt-2  w-48 rounded-md border bg-card p-2 shadow-lg group-hover:block">
+                <div
+                  ref={submenuRef}
+                  className="absolute left-0 top-full z-10 mt-2 w-48 rounded-md border bg-card p-2 shadow-lg"
+                  onMouseEnter={() => {
+                    if (submenuTimeout) clearTimeout(submenuTimeout); // Prevent hiding if re-hovered
+                  }}
+                  onMouseLeave={hideSubMenu}
+                >
                   {submenu.map((subItem) => (
                     <Link
                       key={subItem.path}
