@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
   title: "Expius Infotech | Connecting Right People with Right Opportunities",
   description:
     "Full-service staffing and talent management solutions to help clients fulfill their talent hunt.",
-  generator: "v0.dev",
 };
 
 export default function RootLayout({
@@ -25,9 +25,8 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
 }
-
-import "./globals.css";
