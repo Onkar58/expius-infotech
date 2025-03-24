@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export const config = {
-  api: {
-    formDataParser: false, // Required for handling file uploads
-  },
-};
-
 export const POST = async (req: NextRequest) => {
   try {
     const formData = await req.formData();
