@@ -7,7 +7,6 @@ import { HeartHandshake, ShieldCheck, Lightbulb } from "lucide-react";
 export default function AboutPage() {
   return (
     <>
-      {/* Hero Section */}
       <section className="bg-muted py-12 md:py-20">
         <div className="container">
           <div className="grid gap-8 md:grid-cols-2 items-center">
@@ -32,7 +31,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* About Content */}
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2 items-center">
@@ -72,7 +70,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-16 md:py-24 bg-muted" id="mission">
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
@@ -204,7 +201,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24" id="team">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
             <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">

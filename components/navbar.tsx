@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "./ui/button";
 
 const navItems = [
@@ -22,7 +22,6 @@ const navItems = [
     path: "/about",
     icon: <Users className="h-4 w-4" />,
     submenu: [
-      { title: "About Us", path: "/about" },
       { title: "Mission", path: "/about#mission" },
       { title: "Core Values", path: "/about#core-values" },
     ],
@@ -55,9 +54,9 @@ const navItems = [
     path: "/careers",
     icon: <GraduationCap className="h-4 w-4" />,
     submenu: [
-      { title: "Job Search", path: "/careers/job-search" },
+      // { title: "Job Search", path: "/careers#positions" },
       { title: "Apply Online", path: "/careers/apply" },
-      { title: "Join Our Team", path: "/careers/join-us" },
+      { title: "Join Our Team", path: "/about#team" },
     ],
   },
 ];
@@ -77,35 +76,31 @@ export default function Navbar() {
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
+  const [submenuTimeout, setSubmenuTimeout] = useState<NodeJS.Timeout | null>(
+    null,
+  );
+  const submenuRef = useRef<HTMLDivElement | null>(null);
+
   const showSubMenu = useCallback(
     (title: string) => {
-      if (persist) {
-        return;
+      if (submenuTimeout) {
+        clearTimeout(submenuTimeout);
       }
       setCurrentSubMenu(title);
     },
-    [persist],
-  );
-  const toggleSubMenu = useCallback(
-    (title: string) => {
-      console.log(currentSubMenu, title, persist);
-      if (currentSubMenu === title && persist) {
-        setCurrentSubMenu("");
-        setPersist(false);
-      } else {
-        setCurrentSubMenu(title);
-        setPersist(true);
-      }
-    },
-    [currentSubMenu, persist],
+    [submenuTimeout],
   );
 
   const hideSubMenu = useCallback(() => {
-    if (persist) {
-      return;
-    }
-    setCurrentSubMenu("");
-  }, [persist]);
+    const timeout = setTimeout(() => {
+      if (submenuRef.current && submenuRef.current.matches(":hover")) {
+        return; // If still hovered, do nothing
+      }
+      setCurrentSubMenu("");
+    }, 300); // Delay hiding
+
+    setSubmenuTimeout(timeout);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -130,25 +125,35 @@ export default function Navbar() {
           {navItems.map(({ title, path, submenu, icon }) => (
             <div
               key={`nav-item-${title}-${path}`}
-              onMouseOver={() => showSubMenu(title)}
-              onMouseOut={hideSubMenu}
-              onClick={() => toggleSubMenu(title)}
-              className="flex items-center cursor-pointer relative"
+              className="relative"
+              onMouseEnter={() => showSubMenu(title)}
+              onMouseLeave={hideSubMenu}
             >
-              <Button
-                variant="ghost"
-                className={`hove:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
-              >
-                {title}
-              </Button>
-              {submenu.length > 0 && (
-                <ChevronDown
-                  className={`h-4 w-4 ${currentSubMenu === title ? "rotate-180" : ""}`}
-                />
-              )}
+              <div className="flex items-center cursor-pointer">
+                <Button
+                  asChild
+                  variant="ghost"
+                  className={`px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
+                >
+                  <Link href={path}>{title}</Link>
+                </Button>
+                {submenu.length > 0 && (
+                  <ChevronDown
+                    className={`h-4 w-4 ${currentSubMenu === title ? "rotate-180" : ""}`}
+                  />
+                )}
+              </div>
 
+              {/* Submenu */}
               {currentSubMenu === title && (
-                <div className="absolute left-0 top-full z-10 mt-2  w-48 rounded-md border bg-card p-2 shadow-lg group-hover:block">
+                <div
+                  ref={submenuRef}
+                  className="absolute left-0 top-full z-10 mt-2 w-48 rounded-md border bg-card p-2 shadow-lg"
+                  onMouseEnter={() => {
+                    if (submenuTimeout) clearTimeout(submenuTimeout); // Prevent hiding if re-hovered
+                  }}
+                  onMouseLeave={hideSubMenu}
+                >
                   {submenu.map((subItem) => (
                     <Link
                       key={subItem.path}
@@ -166,10 +171,7 @@ export default function Navbar() {
           ))}
 
           <Button variant="interactive">
-            <Link
-              href="/contact-us"
-              className="relative flex items-center z-10"
-            >
+            <Link href="/contact" className="relative flex items-center z-10">
               <Phone className="mx-2" />
               Book a Call
             </Link>

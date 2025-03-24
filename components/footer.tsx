@@ -49,6 +49,9 @@ export default function Footer() {
                   <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                 </svg>
               </a>
+              <Link href="/dashboard" className="text-md">
+                Admin Login
+              </Link>
             </div>
           </div>
 
@@ -126,11 +129,14 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>123 Business Park, Suite 101, Mumbai, India 400001</span>
+                <span>
+                  No. 9, 3rd Main, 2nd Cross Mattadhalli, R T Nagar, Bangalore -
+                  560032, India
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 9145 257 778</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0" />
