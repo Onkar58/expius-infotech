@@ -54,9 +54,9 @@ const navItems = [
     path: "/careers",
     icon: <GraduationCap className="h-4 w-4" />,
     submenu: [
-      { title: "Job Search", path: "/careers/job-search" },
+      // { title: "Job Search", path: "/careers#positions" },
       { title: "Apply Online", path: "/careers/apply" },
-      { title: "Join Our Team", path: "/careers/join-us" },
+      { title: "Join Our Team", path: "/about#team" },
     ],
   },
 ];
@@ -133,7 +133,7 @@ export default function Navbar() {
                 <Button
                   asChild
                   variant="ghost"
-                  className={`hover:bg-white px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
+                  className={`px-1 hover:underline ${currentSubMenu === title && "underline"} underline-offset-2`}
                 >
                   <Link href={path}>{title}</Link>
                 </Button>
@@ -171,10 +171,7 @@ export default function Navbar() {
           ))}
 
           <Button variant="interactive">
-            <Link
-              href="/contact-us"
-              className="relative flex items-center z-10"
-            >
+            <Link href="/contact" className="relative flex items-center z-10">
               <Phone className="mx-2" />
               Book a Call
             </Link>
