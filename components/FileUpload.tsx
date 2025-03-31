@@ -70,8 +70,11 @@ export const FileUpload: FC<FileUploadProps> = () => {
         ref={inputRef}
         onChange={uploadFile}
         name="resume"
+        required={true}
       />
       <Label htmlFor="resume">Resume/CV</Label>
+
+      <span className="text-red-500 ml-1">*</span>
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}

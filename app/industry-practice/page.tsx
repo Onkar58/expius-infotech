@@ -250,7 +250,7 @@ export default async function IndustryPracticesPage({
           </div>
           <div className="relative h-[250px] rounded-lg overflow-hidden">
             <Image
-              src="/placeholder.svg?height=400&width=600"
+              src="/tailored_solutions.webp"
               alt="Industry Expertise"
               fill
               className="object-cover"

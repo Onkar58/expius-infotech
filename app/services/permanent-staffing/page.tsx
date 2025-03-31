@@ -30,7 +30,7 @@ export default function PermanentStaffingPage() {
         </div>
         <div className="relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="https://covenantindia.net/wp-content/uploads/2024/09/permanent-staffing-company-in-india.webp"
             alt="Permanent Staffing"
             fill
             className="object-cover"

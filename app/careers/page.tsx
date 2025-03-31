@@ -1,12 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Card,
   CardContent,
@@ -15,8 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, MapPin, Briefcase, Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Briefcase, Clock, MapPin, Search } from "lucide-react";
 import Link from "next/link";
 
 export default function CareersPage() {
@@ -36,13 +35,15 @@ export default function CareersPage() {
               <Button size="lg" variant="secondary">
                 <Link href="#positions">View Open Positions</Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent text-white border-white hover:bg-white hover:text-blue-600"
-              >
-                Learn About Our Culture
-              </Button>
+              {/*
+                <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white hover:text-blue-600"
+                >
+                    Learn About Our Culture
+                </Button>
+            */}
             </div>
           </div>
         </div>
@@ -109,48 +110,14 @@ export default function CareersPage() {
             </div>
 
             {/* Job Listings */}
-            <Tabs defaultValue="all" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-8">
-                <TabsTrigger value="all">All Jobs</TabsTrigger>
-                <TabsTrigger value="tech">Technology</TabsTrigger>
-                <TabsTrigger value="business">Business</TabsTrigger>
-                <TabsTrigger value="creative">Creative</TabsTrigger>
-              </TabsList>
-              <TabsContent value="all" className="space-y-4">
-                {jobListings.map((job, index) => (
-                  <JobCard key={index} job={job} />
-                ))}
-              </TabsContent>
-              <TabsContent value="tech" className="space-y-4">
-                {jobListings
-                  .filter(
-                    (job) =>
-                      job.department === "Engineering" ||
-                      job.department === "Product",
-                  )
-                  .map((job, index) => (
-                    <JobCard key={index} job={job} />
-                  ))}
-              </TabsContent>
-              <TabsContent value="business" className="space-y-4">
-                {jobListings
-                  .filter(
-                    (job) =>
-                      job.department === "Sales" ||
-                      job.department === "Marketing",
-                  )
-                  .map((job, index) => (
-                    <JobCard key={index} job={job} />
-                  ))}
-              </TabsContent>
-              <TabsContent value="creative" className="space-y-4">
-                {jobListings
-                  .filter((job) => job.department === "Design")
-                  .map((job, index) => (
-                    <JobCard key={index} job={job} />
-                  ))}
-              </TabsContent>
-            </Tabs>
+            <div className="flex flex-col items-center text-center space-y-4 py-10">
+              <Briefcase className="h-10 w-10 text-muted-foreground" />
+              <h2 className="text-2xl font-semibold">No Current Openings</h2>
+              <p className="text-muted-foreground max-w-md">
+                We're not hiring at the moment, but check back soon or reach out
+                to us for future opportunities.
+              </p>
+            </div>
           </div>
         </div>
       </section>

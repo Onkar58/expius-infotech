@@ -1,26 +1,23 @@
 "use client";
 import Link from "next/link";
-import { FC, FormEvent, useCallback, useRef } from "react";
+import { FC, FormEvent, useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import { FileUpload } from "./FileUpload";
 import { Button, Input, Label } from "./ui";
 import { Checkbox } from "./ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
 import { Textarea } from "./ui/textarea";
+import Loading from "@/app/loading";
 
 export type ApplyFormProps = {};
 
 export const ApplyForm: FC<ApplyFormProps> = () => {
   const formRef = useRef<HTMLFormElement>(null);
+
+  const [isLoading, setLoading] = useState<boolean>(false);
   const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     console.log("Submitting");
     if (formRef.current) {
       const data = new FormData();
@@ -36,7 +33,7 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
         method: "POST",
         body: data,
       });
-      console.log("Received data");
+      setLoading(false);
       if (response.status === 500) {
         toast.error("Something went wrong", {
           duration: 5000,
@@ -108,6 +105,7 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
 
       <div className="space-y-2">
         <Label htmlFor="position">Position Applying For</Label>
+        {/*
         <Select name="position">
           <SelectTrigger id="position">
             <SelectValue placeholder="Select a position" />
@@ -126,6 +124,11 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
             ))}
           </SelectContent>
         </Select>
+            */}
+        <Input
+          name="position"
+          placeholder="Enter the position you are looking for"
+        />
       </div>
 
       <div className="space-y-2">
@@ -157,34 +160,6 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
       </div>
 
       <div className="space-y-2">
-        <Label>Work Authorization</Label>
-        <RadioGroup
-          defaultValue="citizen"
-          className="flex flex-col space-y-2"
-          name="authorization"
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="citizen" id="auth-citizen" />
-            <Label htmlFor="auth-citizen" className="font-normal">
-              I am a citizen or permanent resident
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="visa" id="auth-visa" />
-            <Label htmlFor="auth-visa" className="font-normal">
-              I have a work visa
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="sponsorship" id="auth-sponsorship" />
-            <Label htmlFor="auth-sponsorship" className="font-normal">
-              I require sponsorship
-            </Label>
-          </div>
-        </RadioGroup>
-      </div>
-
-      <div className="space-y-2">
         <FileUpload />
       </div>
 
@@ -199,7 +174,7 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
       </div>
 
       <div className="flex items-start space-x-2">
-        <Checkbox id="terms" />
+        <Checkbox id="terms" required={true} />
         <div className="grid gap-1.5 leading-none">
           <Label htmlFor="terms" className="font-normal text-sm">
             I agree to the{" "}
@@ -210,10 +185,13 @@ export const ApplyForm: FC<ApplyFormProps> = () => {
             <Link href="/privacy" className="text-primary hover:underline">
               privacy policy
             </Link>
+            <span className="text-red-500 ml-1">*</span>
           </Label>
         </div>
       </div>
-      <Button type="submit">Apply</Button>
+      <Button disabled={isLoading} type="submit" className="w-full">
+        {!isLoading ? "Apply" : <Loading />}
+      </Button>
     </form>
   );
 };

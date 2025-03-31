@@ -188,9 +188,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-medium">Office</h3>
                       <p className="text-muted-foreground">
-                        No. 9, 3rd Main, 2nd Cross Mattadhalli, R T Nagar,
-                        <br />
-                        Bangalore - 560032,
+                        Office no-501 , 5th Floor Shri Tower building New DP Rd,
+                        Vishal Nagar, Pimple Nilakh, Pimpri-Chinchwad, <br />
+                        Maharashtra 411027
                         <br />
                         India
                       </p>
@@ -208,7 +208,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-medium">Email</h3>
                       <p className="text-muted-foreground">
-                        info@expiusinfotech.com
+                        careers@expiusinfotech.com
                       </p>
                     </div>
                   </div>

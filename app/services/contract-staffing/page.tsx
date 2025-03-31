@@ -30,7 +30,7 @@ export default function ContractStaffingPage() {
         </div>
         <div className="relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="https://www.betterplace.co.in/blog/wp-content/uploads/2021/03/60.jpg"
             alt="Contract Staffing"
             fill
             className="object-cover"

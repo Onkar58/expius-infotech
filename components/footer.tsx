@@ -49,9 +49,6 @@ export default function Footer() {
                   <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                 </svg>
               </a>
-              <Link href="/dashboard" className="text-md">
-                Admin Login
-              </Link>
             </div>
           </div>
 
@@ -130,8 +127,9 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
-                  No. 9, 3rd Main, 2nd Cross Mattadhalli, R T Nagar, Bangalore -
-                  560032, India
+                  Office no-501 , 5th Floor Shri Tower building New DP Rd,
+                  Vishal Nagar, Pimple Nilakh, Pimpri-Chinchwad, Maharashtra
+                  411027
                 </span>
               </li>
               <li className="flex items-center gap-2">
@@ -140,7 +138,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0" />
-                <span>info@expiusinfotech.com</span>
+                <span>careers@expiusinfotech.com</span>
               </li>
             </ul>
           </div>

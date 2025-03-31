@@ -30,7 +30,7 @@ export default function RecruitmentProcessPage() {
         </div>
         <div className="relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-definition.png"
             alt="Recruitment Process"
             fill
             className="object-cover"

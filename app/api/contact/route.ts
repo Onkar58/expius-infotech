@@ -17,16 +17,16 @@ export const POST = async (req: NextRequest) => {
       port: 587,
       secure: false,
       auth: {
-        user: "onkarwaghmode58@gmail.com",
-        pass: "rmrs thqv njad isze",
+        user: process.env.EMAIL_SENDER_ADDRESS,
+        pass: process.env.APP_PASSWORD_GMAIL,
       },
     });
     const mailOptions = {
       from: {
         name: name,
-        address: "onkarwaghmode58@gmail.com",
+        address: email,
       },
-      to: ["boxcode58@gmail.com"],
+      to: [process.env.EMAIL_RECEIVER_ADDRESS],
       subject: "Contacting from the Expius Website",
       html: `
       <!DOCTYPE html>

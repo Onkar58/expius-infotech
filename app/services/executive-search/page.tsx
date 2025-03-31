@@ -30,7 +30,7 @@ export default function ExecutiveSearchPage() {
         </div>
         <div className="relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-why-hire-rpo.png"
             alt="Executive Search"
             fill
             className="object-cover"

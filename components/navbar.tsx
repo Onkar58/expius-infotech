@@ -56,7 +56,6 @@ const navItems = [
     submenu: [
       // { title: "Job Search", path: "/careers#positions" },
       { title: "Apply Online", path: "/careers/apply" },
-      { title: "Join Our Team", path: "/about#team" },
     ],
   },
 ];

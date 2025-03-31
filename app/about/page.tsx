@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div className="grid gap-12 md:grid-cols-2 items-center">
             <div>
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/our_story.webp"
                 alt="Our Story"
                 width={600}
                 height={600}
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 icon: HeartHandshake,
                 title: "Integrity",
                 desc: "We conduct our business with outmost Integrity & Confidentiality: We make sure that we live up to the trust that our clients put in us and uphold the value of integrity & confidentiality.",
-                img: "/placeholder.svg?height=400&width=600",
+                img: "/integrity.webp",
                 reverse: false,
               },
               {
@@ -169,7 +169,7 @@ export default function AboutPage() {
                 icon: Lightbulb,
                 title: "Tailor-made solutions",
                 desc: "Tailor-made solutions: We believe every client is unique in their own way and every requirement needs to be dealt with differently. Hence, we make sure we provide tailor made solutions to each client to help them get the best talent they need.",
-                img: "/placeholder.svg?height=400&width=600",
+                img: "/tailored_solutions.webp",
                 reverse: false,
               },
             ].map(({ icon: Icon, title, desc, img, reverse }, index) => (
@@ -193,96 +193,6 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-2xl font-bold">{title}</h3>
                   <p className="text-muted-foreground">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 md:py-24" id="team">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-            <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-              Our Team
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Meet the Experts Behind Expius
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Our team of experienced professionals is dedicated to connecting
-              the right talent with the right opportunities.
-            </p>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((member) => (
-              <div
-                key={member}
-                className="bg-card rounded-lg p-6 shadow-sm text-center"
-              >
-                <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full">
-                  <Image
-                    src="/placeholder.svg?height=128&width=128"
-                    alt={`Team Member ${member}`}
-                    width={128}
-                    height={128}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <h3 className="mb-1 text-xl font-bold">Team Member {member}</h3>
-                <p className="mb-3 text-sm text-muted-foreground">
-                  Position Title
-                </p>
-                <p className="mb-4 text-muted-foreground">
-                  Brief description about the team member and their expertise in
-                  the staffing industry.
-                </p>
-                <div className="flex justify-center space-x-3">
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    <span className="sr-only">LinkedIn</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect width="4" height="12" x="2" y="9"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    <span className="sr-only">Email</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                  </a>
                 </div>
               </div>
             ))}

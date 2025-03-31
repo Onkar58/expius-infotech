@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest) => {
     const phone: string = formData.get("phone") as string;
     const location: string = formData.get("location") as string;
     const position: string = formData.get("position") as string;
-    const relocation: string = formData.get("relocation") as string;
+    const relocation: string = formData.get("relocate") as string;
     const coverLetter: string = formData.get("cover-letter") as string;
 
     const resume = formData.get("resume");
@@ -37,9 +37,9 @@ export const POST = async (req: NextRequest) => {
     const mailOptions = {
       from: {
         name: fname + " " + lname,
-        address: email,
+        address: email!,
       },
-      to: [process.env.EMAIL_RECEIVER_ADDRESS],
+      to: [process.env.EMAIL_RECEIVER_ADDRESS!],
       subject: `Applying for from the Expius Website`,
       html: `
       <!DOCTYPE html>
@@ -108,6 +108,7 @@ export const POST = async (req: NextRequest) => {
                   <h3>Position Details:</h3>
                   <p><strong>Position Applying For:</strong> ${position}</p>
                   <p><strong>Willing to Relocate:</strong> ${relocation}</p>
+                  <p><strong>Cover-letter:</strong> ${coverLetter}</p>
               </div>
 
               <p>I have attached my resume for your review. I would appreciate the opportunity to discuss how my skills and experience align with the role. Please let me know a convenient time for a conversation.</p>
@@ -135,7 +136,7 @@ export const POST = async (req: NextRequest) => {
       ],
     };
 
-    await transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions);
     return NextResponse.json({
       success: true,
       message: "Message sent successfully",
