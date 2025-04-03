@@ -127,9 +127,23 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
+                  No. 9, 3rd Main, 2nd Cross Mattadhalli, R T Nagar, Bangalore -
+                  560032,
+                </span>
+              </li>
+
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>
                   Office no-501 , 5th Floor Shri Tower building New DP Rd,
                   Vishal Nagar, Pimple Nilakh, Pimpri-Chinchwad, Maharashtra
                   411027
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>
+                  23A Royd Steet, Room No. 201, 2nd Floor, Kolkata - 700016
                 </span>
               </li>
               <li className="flex items-center gap-2">

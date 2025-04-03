@@ -183,16 +183,30 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start">
+                  <div className="flex items-center">
                     <MapPin className="h-5 w-5 mr-3 text-primary" />
                     <div>
-                      <h3 className="font-medium">Office</h3>
+                      <p className="text-muted-foreground">
+                        No. 9, 3rd Main, 2nd Cross Mattadhalli, R T Nagar,
+                        Bangalore - 560032,
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="shrink-0 h-5 w-5 mr-3 text-primary" />
+                    <div>
                       <p className="text-muted-foreground">
                         Office no-501 , 5th Floor Shri Tower building New DP Rd,
-                        Vishal Nagar, Pimple Nilakh, Pimpri-Chinchwad, <br />
-                        Maharashtra 411027
-                        <br />
-                        India
+                        Vishal Nagar, Pimple Nilakh, Pimpri-Chinchwad - 411027
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="h-5 w-5 mr-3 text-primary" />
+                    <div>
+                      <p className="text-muted-foreground">
+                        23A Royd Steet, Room No. 201, 2nd Floor, Kolkata -
+                        700016
                       </p>
                     </div>
                   </div>

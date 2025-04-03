@@ -85,14 +85,6 @@ export default function AboutPage() {
                 that allow them to enjoy career satisfaction by attaining their
                 professional goals.
               </p>
-              <Button asChild variant="outline">
-                <Link
-                  href="/about/mission"
-                  className="inline-flex items-center"
-                >
-                  Learn More <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
             </div>
 
             <div className="bg-card rounded-lg p-8 shadow-md">
@@ -108,11 +100,6 @@ export default function AboutPage() {
                 ensure the mutual satisfaction of our clients and candidates —
                 and continue to drive our own business growth.
               </p>
-              <Button asChild variant="outline">
-                <Link href="/about/vision" className="inline-flex items-center">
-                  Learn More <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
             </div>
             <div className="bg-card rounded-lg p-8 shadow-md">
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
@@ -131,11 +118,6 @@ export default function AboutPage() {
                 happen. Our organized, unique approach has yielded quality
                 results time after time. And, we’ll continue to do it this way.{" "}
               </p>
-              <Button asChild variant="outline">
-                <Link href="/about/vision" className="inline-flex items-center">
-                  Learn More <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </div>
@@ -162,7 +144,7 @@ export default function AboutPage() {
                 icon: ShieldCheck,
                 title: "Ethical Practice",
                 desc: "Ethical Practices: In spite of a world of cut throat competition, not letting go of our ethical practices is what helps us achieve our goals.",
-                img: "/placeholder.svg?height=400&width=600",
+                img: "/ethical-practice.png",
                 reverse: false,
               },
               {
