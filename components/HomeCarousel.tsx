@@ -10,30 +10,26 @@ const info = [
     heading: "PERMANENT STAFFING",
     sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
     link: "/",
-    image:
-      "https://covenantindia.net/wp-content/uploads/2024/09/permanent-staffing-company-in-india.webp",
+    image: "/bg1.jpg",
   },
 
   {
     heading: "PERMANENT STAFFING",
     sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
     link: "/",
-    image:
-      "https://www.betterplace.co.in/blog/wp-content/uploads/2021/03/60.jpg",
+    image: "/bg2.jpg",
   },
   {
     heading: "PERMANENT STAFFING",
     sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
     link: "/",
-    image:
-      "https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-why-hire-rpo.png",
+    image: "/bg3.jpg",
   },
   {
     heading: "PERMANENT STAFFING",
     sub: "Expius provides talented, experienced, highly motivated candidatesfor positions with clients across diverse industries.",
     link: "/",
-    image:
-      "https://www.weareams.com/wp-content/uploads/guide-to-recruitment-process-outsourcing-definition.png",
+    image: "/bg4.jpg",
   },
 ];
 
