@@ -42,9 +42,10 @@ export const POST = async (req: NextRequest) => {
     console.log("All good till herer");
     const mailOptions = {
       from: {
-        name: fname + " " + lname,
-        address: email,
+        name: `${fname} ${lname} via Expius`,
+        address: process.env.EMAIL_SENDER_ADDRESS,
       },
+      replyTo: email,
       to: [process.env.EMAIL_RECEIVER_ADDRESS],
       subject: `Applying for from the Expius Website`,
       html: `
@@ -136,13 +137,15 @@ export const POST = async (req: NextRequest) => {
           `,
       attachments: [
         {
-          filename: fname + lname + "Resume",
+          filename: resume.name,
           content: buffer,
         },
       ],
     };
 
-    transporter.sendMail(mailOptions);
+    const info = transporter.sendMail(mailOptions);
+
+    console.log("Email sent successfully:", info);
     return NextResponse.json({
       success: true,
       message: "Message sent successfully",
