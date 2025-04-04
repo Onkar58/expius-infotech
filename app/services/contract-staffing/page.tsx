@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ChevronLeft, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function ContractStaffingPage() {
   return (
@@ -30,7 +30,7 @@ export default function ContractStaffingPage() {
         </div>
         <div className="relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="https://www.betterplace.co.in/blog/wp-content/uploads/2021/03/60.jpg"
+            src="/bg2.jpg"
             alt="Contract Staffing"
             fill
             className="object-cover"

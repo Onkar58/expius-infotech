@@ -106,14 +106,9 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="relative flex items-center gap-2 w-[200px] h-full"
+          className="relative flex items-center gap-2 w-[200px] h-full py-2"
         >
-          <Image
-            src="https://expiusinfotech.com/img/LOGO.PNG"
-            alt="LOGO"
-            fill
-            className="static"
-          />
+          <Image src="/logo.png" alt="LOGO" fill className="static" />
         </Link>
 
         <button className="block md:hidden" onClick={() => setIsOpen(!isOpen)}>

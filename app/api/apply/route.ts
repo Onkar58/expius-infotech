@@ -21,6 +21,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    console.log(resume);
     const bytes = await resume.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -34,12 +35,13 @@ export const POST = async (req: NextRequest) => {
         pass: process.env.APP_PASSWORD_GMAIL,
       },
     });
+    console.log("All good till herer");
     const mailOptions = {
       from: {
         name: fname + " " + lname,
         address: email!,
       },
-      to: [process.env.EMAIL_RECEIVER_ADDRESS!],
+      to: [process.env.EMAIL_RECEIVER_ADDRESS],
       subject: `Applying for from the Expius Website`,
       html: `
       <!DOCTYPE html>
