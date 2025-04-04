@@ -1,6 +1,5 @@
 import { AboutUs } from "@/components/AboutUs";
 import { HeroSection } from "@/components/HeroSection";
-import HeroCarousel from "@/components/HomeCarousel";
 import { IndustryTech } from "@/components/IndustryTech";
 import { Services } from "@/components/Services";
 import { Stats } from "@/components/StatsSection";
@@ -11,7 +10,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <HeroCarousel />
       <HeroSection />
       <Stats />
       <AboutUs />
