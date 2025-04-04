@@ -21,9 +21,13 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    console.log(resume);
     const bytes = await resume.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    console.log(
+      process.env.EMAIL_SENDER_ADDRESS,
+      process.env.APP_PASSWORD_GMAIL,
+      process.env.EMAIL_RECEIVER_ADDRESS,
+    );
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -39,7 +43,7 @@ export const POST = async (req: NextRequest) => {
     const mailOptions = {
       from: {
         name: fname + " " + lname,
-        address: email!,
+        address: email,
       },
       to: [process.env.EMAIL_RECEIVER_ADDRESS],
       subject: `Applying for from the Expius Website`,
