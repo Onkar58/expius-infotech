@@ -14,9 +14,37 @@ export default function AboutPage() {
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
                 About Expius Infotech
               </h1>
-              <p className="text-lg text-muted-foreground">
-                Since inception, Expius Infotech's aim has been towards
-                connecting the right people with the right opportunity.
+              <p className="text-md text-muted-foreground">
+                Established in 2015, Expius Infotech is a premier provider of
+                comprehensive staffing and full-time hiring solutions. With a
+                deep commitment to client success, we specialize in connecting
+                top-tier businesses with highly qualified professionals across a
+                wide range of industries. Our seasoned team of recruitment
+                experts leverages an extensive network and cutting-edge
+                technology to identify, screen, and place exceptional candidates
+                who align seamlessly with our clients' unique needs and
+                corporate culture. From temporary staffing to direct hire
+                placements,
+              </p>
+
+              <p className="text-md text-muted-foreground">
+                Expius offers flexible, scalable solutions that drive
+                productivity, support business growth, and foster long-term
+                success. With a proven track record of delivering results and a
+                dedication to building lasting partnerships, we have earned a
+                reputation as a trusted ally in the staffing industry.
+                Furthermore, Expius's dedicated account management team works
+                closely with clients throughout the hiring process, offering
+                guidance, support, and the company's rigorous screening process,
+                which includes in-depth interviews, skill assessments, and
+                background checks, ensures that only the most qualified and
+                reliable professionals are presented to clients.
+              </p>
+
+              <p className="text-md text-muted-foreground">
+                Expius Infotech has established itself as a trusted ally for
+                businesses seeking to optimize their workforce and achieve their
+                strategic objectives.
               </p>
             </div>
             <div className="relative  lg:h-98 md:h-80">
