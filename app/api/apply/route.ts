@@ -23,30 +23,22 @@ export const POST = async (req: NextRequest) => {
 
     const bytes = await resume.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    console.log(
-      process.env.EMAIL_SENDER_ADDRESS,
-      process.env.APP_PASSWORD_GMAIL,
-      process.env.EMAIL_RECEIVER_ADDRESS,
-    );
-
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
+      host: "mail.expiusinfotech.com", // your SMTP server
+      port: 465, // port for secure SSL
+      secure: true, // use SSL
       auth: {
-        user: process.env.EMAIL_SENDER_ADDRESS,
-        pass: process.env.APP_PASSWORD_GMAIL,
+        user: "careers@expiusinfotech.com",
+        pass: "Eipl@2025", // store this securely in .env
       },
     });
-    console.log("All good till herer");
     const mailOptions = {
       from: {
         name: `${fname} ${lname} via Expius`,
-        address: process.env.EMAIL_SENDER_ADDRESS,
+        address: email,
       },
       replyTo: email,
-      to: [process.env.EMAIL_RECEIVER_ADDRESS],
+      to: ["careers@expiusinfotech.com"],
       subject: `Applying for from the Expius Website`,
       html: `
       <!DOCTYPE html>
